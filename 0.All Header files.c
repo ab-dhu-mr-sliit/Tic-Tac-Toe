@@ -31,6 +31,3 @@ void logisValidMove(FILE *fp, int row, int col);
 void logWins(FILE *fp, char symbols);
 void logComputerWin(FILE *fp);
 void logdisplayBoard(FILE *fp, char **board, int size);
-
-
-#endif
