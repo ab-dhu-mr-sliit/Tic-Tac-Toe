@@ -2,7 +2,7 @@ void generateRandomMove(char **board, int size, int *row, int *col) {
     // Seed the random number generator (only once in main)
     // srand(time(NULL)); ← Do this in main(), not here
     printf("Computer's thinking...\n");
-    Sleep(1000);       // Pause for 1 second to simulate thinking
+    SLEEP(1000);       // Pause for 1 second to simulate thinking
 
     while (1) {
         int r = rand() % size;
@@ -14,5 +14,5 @@ void generateRandomMove(char **board, int size, int *row, int *col) {
             break;
         }
     }
-    system("cls"); // Clear the console (Windows-specific)
+    system(CLEAR); // Clear the console (Windows-specific)
 }
