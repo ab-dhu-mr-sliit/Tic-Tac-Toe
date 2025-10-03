@@ -1,8 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <windows.h> 
-#include <conio.h>
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif 
+
+
+#ifdef _WIN32
+    #define CLEAR "cls"
+    #define PAUSE "pause"
+    #define SLEEP(ms) Sleep(ms)
+#else
+    #define CLEAR "clear"
+    #define PAUSE "read -p \"Press Enter to continue...\""
+    #define SLEEP(ms) usleep((ms) * 1000)
+#endif
 
 // 0.All Header files.c
 
@@ -13,6 +27,8 @@ void displayBoard(char **board, int size);
 void freeBoard(char **board, int size);
 
 // Player moves
+int tryMode(FILE *fp);
+int trySize(FILE *fp);
 void getValidMove(char **board, int size, char symbol, FILE *fp);
 void generateRandomMove(char **board, int size, int *row, int *col);
 
