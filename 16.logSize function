@@ -1,0 +1,7 @@
+void logSize(FILE *fp, int size) {
+    if (fp != NULL) {
+        fprintf(fp, "Grid size selected: %d\n\n", size);
+    } else {
+        printf("Error: Log file is not open.\n");
+    }
+}
