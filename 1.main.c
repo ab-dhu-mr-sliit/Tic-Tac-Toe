@@ -1,9 +1,5 @@
 int main() {
     int mode, size;
-
-    // Seed random number generator for computer moves
-    srand(time(NULL));
-
     // Open log file
     FILE *fp = fopen("tic tac toe V7.txt", "w");
     if (fp == NULL) {
@@ -13,12 +9,12 @@ int main() {
     fprintf(fp, "Log file opened successfully.\n\n");
     fprintf(fp, "Welcome to Tic-Tac-Toe!\n\n");
     fprintf(fp, "In this version  \n1. tryAgain function\n2. exit function\n");
-
+    
     printf("Welcome to Tic-Tac-Toe!\n\n");
+    exitGame(fp);
     mode = tryMode(fp);
     exitGame(fp);
     size = trySize(fp);
-    exitGame(fp);
     
     // Create and initialize board
     char **board = createBoard(size);
@@ -27,18 +23,18 @@ int main() {
         return 1;
     }
     initializeBoard(board, size);
-
+    
     if (mode == 1) {
         // Two-player mode
         char symbols[2] = {'X', 'O'};
         int currentTurn = 0;
-
+        
         while (1) {
             printf("%d x %d Grid (Two-Player)\n", size, size);
             displayBoard(board, size);
             logdisplayBoard(fp, board, size);
             getValidMove(board, size, symbols[currentTurn], fp);
-
+            
             if (checkWin(board, size, symbols[currentTurn])) {
                 displayBoard(board, size);
                 logdisplayBoard(fp, board, size);
@@ -46,7 +42,7 @@ int main() {
                 logWins(fp, symbols[currentTurn]);
                 break;
             }
-
+            
             if (isBoardFull(board, size)) {
                 displayBoard(board, size);
                 logdisplayBoard(fp, board, size);
@@ -56,13 +52,15 @@ int main() {
             system(CLEAR); // Clear the console (Windows-specific)
             currentTurn = switchPlayer(currentTurn, 2);
         }
-
+        
     } else if (mode == 2) {
         // User vs Computer
         char userSymbol = 'X';
         char computerSymbol = 'O';
         int row, col;
-
+        
+        // Seed random number generator for computer moves
+        srand(time(NULL));
         while (1) {
             printf("%d x %d Grid (User vs Computer)\n", size, size);
             displayBoard(board, size);
