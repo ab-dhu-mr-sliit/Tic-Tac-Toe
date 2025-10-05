@@ -8,5 +8,4 @@ void exitGame(FILE *fp) {
         fclose(fp);
         exit(0);
     }
-
 }
